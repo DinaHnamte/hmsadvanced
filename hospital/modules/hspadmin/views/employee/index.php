@@ -1,0 +1,49 @@
+<?php
+
+use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\grid\GridView;
+
+/* @var $this yii\web\View */
+/* @var $dataProvider yii\data\ActiveDataProvider */
+
+$this->title = 'Employees';
+$this->params['breadcrumbs'][] = ['label' => 'Institute Admin', 'url' => ['default/index']];
+$this->params['breadcrumbs'][] = $this->title;
+?>
+<div class="employee-index">
+
+    <h1><?= Html::encode($this->title) ?></h1>
+
+    <p>
+        <?= Html::a('Add User/Employee', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
+
+
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            //'id',
+            //'idinstitution',
+            //'salute',
+            //'name',
+			[
+				'label'=>'Name',
+				'format'=>'raw',
+				'value' => function($data){
+					return $data->salute .' '. $data->name; 
+				}
+			],
+            'email:email',
+            'dob:date',
+            'sex',
+            'mobno',
+			
+            ['class' => 'yii\grid\ActionColumn'],
+        ],
+    ]); ?>
+
+
+</div>
